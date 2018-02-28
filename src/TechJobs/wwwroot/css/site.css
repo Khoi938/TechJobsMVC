@@ -44,7 +44,9 @@ textarea {
 td, th {
     padding: 10px;
 }
-
+.capitalize{
+    text-transform: capitalize;
+}
 tr:nth-child(odd) {
     background-color: #e4e4e4;
 }

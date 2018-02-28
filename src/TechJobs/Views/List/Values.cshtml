@@ -2,7 +2,7 @@
 
 <table>
 @for (int i= 0; i < ViewBag.items.Count; i++)
-{
+{// tenary operator if i modulus 2 = 0 then i = even, else i = odd
     <tr class="@( i % 2 == 0 ? "even" : "odd" ) ">
         <td><a asp-controller="List" asp-action="Jobs" asp-route-column="@ViewBag.column" 
                asp-route-value="@ViewBag.items[i]">@ViewBag.items[i]</a></td>

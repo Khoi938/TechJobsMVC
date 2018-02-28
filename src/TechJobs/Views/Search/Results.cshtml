@@ -1,0 +1,52 @@
+﻿
+<h1>Result</h1>
+
+<form action="/Search/Results">
+    <h2>Search by:</h2>
+
+    <p>
+        @foreach (KeyValuePair<string, string> column in ViewBag.columns)
+        {
+            <span>
+                <input type="radio"
+                       name="searchType"
+                       id="@column.Key"
+                       value="@column.Key"
+                       checked="@column.Key == 'all''" />
+                <label for="@column.Key">@column.Value</label>
+            </span>
+        }
+    </p>
+
+    <p>
+        <label for="searchTerm">Keyword:</label>
+        <input type="text" name="searchTerm" id="searchTerm" />
+    </p>
+
+    <input type="submit" value="Search" />
+</form>
+
+<hr />
+
+@if (ViewBag.jobs != null)
+{
+    <h3>@ViewBag.jobs.Count Result(s)</h3>
+    // TODO #2 - Loop over jobs dictionary and display all job fields
+    // class = "job-listing" below is connected to the CSS sheet.
+    // use css for font etc to mask/reduce load 
+}
+@{
+    foreach (Dictionary<string, string> listing in ViewBag.jobs)
+    {
+    <table class="job-listing">
+        @foreach (KeyValuePair<string, string> element in listing)
+    {
+        <tr>
+            <td class="capitalize">@element.Key</td>
+            <td>@element.Value</td>
+        </tr>
+    }    
+    </table>
+
+    }
+}

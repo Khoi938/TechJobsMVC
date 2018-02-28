@@ -2,6 +2,7 @@
 using System.IO;
 using System.Reflection;
 using System.Text;
+using System;
 
 namespace TechJobs.Models
 {
@@ -29,7 +30,6 @@ namespace TechJobs.Models
         public static List<string> FindAll(string column)
         {   // FindAll Method taking in string column, returning List of <string> type
             LoadData();
-
             List<string> values = new List<string>();
 
             foreach (Dictionary<string, string> job in AllJobs)
@@ -136,6 +136,11 @@ namespace TechJobs.Models
             }
             // remove the top row "column name" from the list
             string[] headers = rows[0];
+             /*Capitalize the First letter of the element in the array. Future collumn
+            for (int i = 0; i < headers.Length; i++)
+            {
+                headers[i] = UpperFirst(headers[i]);
+            } */
             rows.Remove(headers);
 
             // Parse each row array into a more friendly Dictionary
@@ -193,5 +198,13 @@ namespace TechJobs.Models
 
             return rowValues.ToArray();
         }
-    }
+
+        public static string UpperFirst(string words)
+        {
+            words = Char.ToUpper(words[0]) + words.Substring(1);
+            return (words);
+        }
+
+    }   
+        
 }
