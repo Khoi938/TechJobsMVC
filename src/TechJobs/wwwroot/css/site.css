@@ -47,6 +47,10 @@ td, th {
 .capitalize{
     text-transform: capitalize;
 }
+.error{
+    color:red;
+}
+
 tr:nth-child(odd) {
     background-color: #e4e4e4;
 }

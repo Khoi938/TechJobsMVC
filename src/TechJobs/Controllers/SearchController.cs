@@ -18,6 +18,12 @@ namespace TechJobs.Controllers
         public IActionResult Results(string searchType, string searchTerm)
         {
             ViewBag.columns = ListController.columnChoices;
+            if (string.IsNullOrEmpty(searchTerm)|| string.IsNullOrEmpty(searchType))
+            {
+                ViewBag.error = "Please enter keyword.";
+                return View("Views/Search/Results.cshtml");
+            }
+            
             List<Dictionary<string, string>> matchedJob = new List<Dictionary<string, string>>();
             List<Dictionary<string, string>> allJobs = JobData.FindAll();
             string lowerTerm = searchTerm.ToLower();
@@ -37,6 +43,12 @@ namespace TechJobs.Controllers
                     }
                 }
             }
+            else
+            {
+                matchedJob = JobData.FindByColumnAndValue(lowerType, lowerTerm);
+            }
+            ViewBag.searchTerm = searchTerm;
+            ViewBag.searchType = searchType;
             ViewBag.title = "Search Result";
             ViewBag.jobs = matchedJob;
             return View("Views/Search/Results.cshtml");

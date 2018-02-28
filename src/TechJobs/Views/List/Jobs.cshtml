@@ -1,7 +1,22 @@
 ﻿<h1>@ViewBag.title</h1>
 
-<h3>@ViewBag.jobs.Count Result(s)</h3>
+@if (ViewBag.jobs != null)
+{
+    <h3>@ViewBag.jobs.Count Result(s)</h3>
+    // class = "job-listing" below is connected to the CSS sheet.
+    // use css for font etc to mask/reduce load
 
-@{ 
-    // TODO #3 - Use the same list display from Views/Search/Index.cshtml 
-}
+    foreach (Dictionary<string, string> listing in ViewBag.jobs)
+    {
+        <table class="job-listing">
+            @foreach (KeyValuePair<string, string> element in listing)
+            {
+                <tr>
+                    <td class="capitalize">@element.Key</td>
+                    <td>@element.Value</td>
+                </tr>
+            }
+        </table>
+
+    }
+}}

@@ -21,6 +21,7 @@
     <p>
         <label for="searchTerm">Keyword:</label>
         <input type="text" name="searchTerm" id="searchTerm" />
+        <lable class="error"> @ViewBag.error </lable>
     </p>
 
     <input type="submit" value="Search" />
@@ -31,11 +32,14 @@
 @if (ViewBag.jobs != null)
 {
     <h3>@ViewBag.jobs.Count Result(s)</h3>
-    // TODO #2 - Loop over jobs dictionary and display all job fields
-    // class = "job-listing" below is connected to the CSS sheet.
-    // use css for font etc to mask/reduce load 
-}
-@{
+    @if (ViewBag.searchTerm != null)
+    {
+        <p>Matching "@ViewBag.searchTerm" in <span class="capitalize">@ViewBag.searchType</span></p>
+    }
+        // TODO #2 - Loop over jobs dictionary and display all job fields
+        // class = "job-listing" below is connected to the CSS sheet.
+        // use css for font etc to mask/reduce load 
+    
     foreach (Dictionary<string, string> listing in ViewBag.jobs)
     {
     <table class="job-listing">
