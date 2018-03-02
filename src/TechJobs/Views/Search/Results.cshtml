@@ -34,7 +34,12 @@
     <h3>@ViewBag.jobs.Count Result(s)</h3>
     @if (ViewBag.searchTerm != null)
     {
-        <p>Matching "@ViewBag.searchTerm" in <span class="capitalize">@ViewBag.searchType</span></p>
+        <p>Matching "@ViewBag.searchTerm" in <span class="capitalize">@if (ViewBag.searchType == "core competency")
+            {   // core competency is in lowercase is because the Cap is done via CSS
+                
+                @("Skill");
+            }
+            else { @(ViewBag.searchType); }</span></p>
     }
         // TODO #2 - Loop over jobs dictionary and display all job fields
         // class = "job-listing" below is connected to the CSS sheet.
